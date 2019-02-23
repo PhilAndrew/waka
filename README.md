@@ -1,3 +1,4 @@
+test
 # Waka
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/bf59f49c861eee7e624e/maintainability)](https://codeclimate.com/github/consindo/waka/maintainability)
