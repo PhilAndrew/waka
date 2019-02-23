@@ -17,7 +17,14 @@
         "type": "git",
         "url": "git+https://github.com/consindo/waka.git"
     },
-    "keywords": ["auckland", "transport", "at", "hop", "transit", "dymajo"],
+    "keywords": [
+        "auckland",
+        "transport",
+        "at",
+        "hop",
+        "transit",
+        "dymajo"
+    ],
     "apidoc": {
         "name": "Waka",
         "title": "Waka API",
@@ -90,11 +97,13 @@
         "pug": "^2.0.3",
         "react": "^16.4.1",
         "react-art": "^16.4.1",
+        "react-columns": "^1.2.0",
         "react-dom": "^16.4.1",
         "react-leaflet": "^1.7.0",
         "react-native-web": "^0.8.8",
         "react-router": "^4.2.0",
         "react-router-dom": "^4.2.2",
+        "react-table": "^6.9.2",
         "request": "^2.87.0",
         "resolve-url-loader": "^2.1.0",
         "rimraf": "^2.6.2",

@@ -11,11 +11,13 @@ import { Save } from '../station/save.jsx'
 import { Timetable } from '../pages/timetable.jsx'
 import { Lines } from '../lines/index.jsx'
 import { Line } from '../lines/line.jsx'
+import { Ngo } from '../ngo/line.jsx'
 import { Sponsor } from '../pages/sponsor.jsx'
 import { Region } from '../pages/region.jsx'
 import { Settings } from '../pages/settings.jsx'
 import { Blank } from '../pages/blank.jsx'
 import { NoMatch } from '../pages/nomatch.jsx'
+import {Dashboard} from '../pages/dashboard.jsx'
 
 const routingEvents = new Events()
 
@@ -87,12 +89,14 @@ class Content extends React.Component {
             exact
             render={wrapFn(Timetable)}
           />
+          <Route path="/ngo/:region" exact render={wrapFn(Ngo)} />
           <Route path="/l/:region" exact render={wrapFn(Lines)} />
           <Route path="/l/:region/:line_id" exact render={wrapFn(Line)} />
           <Route path="/sponsor" exact render={wrapFn(Sponsor)} />
           <Route path="/region" exact render={wrapFn(Region)} />
           <Route path="/settings" exact render={wrapFn(Settings)} />
           <Route path="/blank" exact render={wrapFn(Blank)} />
+          <Route path="/dashboard" exact render={wrapFn(Dashboard)} />
           <Route render={wrapFn(NoMatch)} />
         </Switch>
       </View>

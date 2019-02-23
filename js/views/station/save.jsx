@@ -85,6 +85,7 @@ class SaveWithoutRouter extends React.Component {
       }, 50)
     }
   }
+
   triggerSaveChange = e => {
     this.setState({
       name: e.currentTarget.value,

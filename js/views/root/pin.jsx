@@ -212,7 +212,7 @@ export class Pin extends React.Component {
     if (!this.state.emailSent) {
       desktopOut = (
         <div>
-          <h3>Email yourself a link to Waka!</h3>
+          <h3>Email yourself a link to Access Our Community</h3>
           <form onSubmit={this.sendEmail}>
             <input
               value={this.state.email}

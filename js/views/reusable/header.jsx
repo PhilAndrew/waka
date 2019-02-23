@@ -104,13 +104,12 @@ export class Header extends React.Component {
           <View style={styles.bottomWrapper}>
             <View style={styles.textWrapper}>
               <Text style={[styles.text, subtitleStyle]} numberOfLines={1}>
-                {this.props.title}&nbsp;
+                AOC - Access Our Community
               </Text>
-              {subtitleElement}
+
             </View>
           </View>
         </View>
-        {actionIcon}
         {closeIcon}
       </View>
     )

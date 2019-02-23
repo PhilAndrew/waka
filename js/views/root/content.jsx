@@ -1,9 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
+import { View, Text, TextInput, StyleSheet, findNodeHandle } from 'react-native'
 import { StationStore } from '../../stores/stationStore.js'
 import { UiStore } from '../../stores/uiStore.js'
 import { t } from '../../stores/translationStore.js'
+import { LinkButton } from '../reusable/linkButton.jsx'
 
 import { TouchableOpacity } from '../reusable/touchableOpacity.jsx'
 
@@ -20,6 +22,7 @@ import DymajoIcon from '../../../dist/icons/dymajo.svg'
 import PatronIcon from '../../../dist/icons/patron.svg'
 import CityIcon from '../../../dist/icons/city.svg'
 import SettingsIcon from '../../../dist/icons/settings.svg'
+import {vars} from '../../styles'
 
 const iconMap = {
   'lines.svg': <LinesIcon />,
@@ -36,6 +39,9 @@ const iconMap = {
   'city.svg': <CityIcon />,
   'settings.svg': <SettingsIcon />,
 }
+
+let styles = null
+
 
 class SidebarItemVanilla extends React.Component {
   state = {
@@ -120,6 +126,28 @@ class SidebarItemVanilla extends React.Component {
         </li>
       )
     }
+    else if (this.props.type === 'description2') {
+      let label = 'Read More'
+      let className = 'description2'
+      if (this.state.description) {
+        className += ' show'
+        label = 'Close'
+      }
+      return (
+        <li className={classname + ' text-only touchable'}>
+          <div className="text-wrapper">
+            <h1 className="name">{this.props.name}</h1>
+            <div className="description">{this.props.description}</div>
+            <div className={className}>{this.props.description2}</div>
+            <button
+              className="transparent-button"
+              onClick={this.toggleDescription}
+            >
+            </button>
+          </div>
+        </li>
+      )
+    }
     return item
   }
 }
@@ -130,6 +158,7 @@ export class RootContent extends React.Component {
     pin: PropTypes.func,
   }
   state = {
+    input1: StationStore.input1Value,
     stations: StationStore.getData(),
     currentCity: StationStore.currentCity,
   }
@@ -159,6 +188,11 @@ export class RootContent extends React.Component {
       e.preventDefault()
     }
   }
+  clickLogin = () => {
+    //UiStore.go('/dashboard')
+    console.log('clicked')
+    UiStore.safePush('/dashboard')
+  }
   render() {
     let twitterAcc
     if (this.state.currentCity.prefix === 'nz-akl') {
@@ -185,29 +219,7 @@ export class RootContent extends React.Component {
 
     let stations = this.state.stations
     const secondTwo = [
-      <SidebarItem
-        key="city"
-        type="install"
-        action={this.toggleRegion}
-        icon="city.svg"
-        name={t('onboarding.city.name')}
-        description={t('onboarding.city.description')}
-      />,
-      <SidebarItem
-        key="sponsor"
-        url="/sponsor"
-        icon="patron.svg"
-        name={t('onboarding.sponsor.name')}
-        description={t('onboarding.sponsor.description')}
-      />,
-      <SidebarItem
-        className="desktop-hide"
-        key="settings"
-        url="/settings"
-        icon="settings.svg"
-        name={t('onboarding.settings.name')}
-        description={t('onboarding.settings.description')}
-      />,
+
     ]
     const description2 = (
       <div>
@@ -241,27 +253,32 @@ export class RootContent extends React.Component {
     const onboarding = (
       <div className="onboard blue-fill">
         <ul>
-          <SidebarItem
-            type="description"
-            name={t('onboarding.welcome.name', { appname: t('app.name') })}
-            description={t('onboarding.welcome.description', {
-              appname: t('app.name'),
-            })}
-            description2={description2}
-          />
-          <SidebarItem
-            url={
-              '/l/' +
-              (this.state.currentCity.prefix === 'none'
-                ? ''
-                : this.state.currentCity.prefix)
-            }
-            icon="lines.svg"
-            action={this.toggleRegion}
-            className="mobile-hide"
-            name={t('onboarding.lines.name')}
-            description={t('onboarding.lines.description')}
-          />
+
+          <View style={styles.innerWrapper}>
+            <Text style={styles.label}>Your email:
+            </Text>
+            <TextInput
+              style={styles.input}
+              value={this.state.email}
+              onChange={this.triggerSaveChange}
+            />
+            <Text style={styles.label}>Password:
+            </Text>
+            <TextInput
+              style={styles.input}
+              value={this.state.email}
+              secureTextEntry={true}
+              onChange={this.triggerSaveChange}
+            />
+            <LinkButton
+              color="secondary"
+              size="large"
+              label="Login User"
+              onClick={this.clickLogin}
+            />
+          </View>
+
+
           <SidebarItem
             type="install"
             action={this.props.togglePin}
@@ -282,7 +299,15 @@ export class RootContent extends React.Component {
               </div>
             }
           />
-          {secondTwo}
+
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+
         </ul>
       </div>
     )
@@ -302,48 +327,52 @@ export class RootContent extends React.Component {
     return (
       <div className="root-card-content">
         {onboarding}
-        <h2>{t('savedStations.title')}</h2>
-        {message}
-        <ul>
-          {StationStore.getOrder().map(station => {
-            const url = station.split('|').slice(-1)
-            return (
-              <SidebarItem
-                key={station}
-                url={`/s/${StationStore.StationData[station].region ||
-                  'nz-akl'}/${url}`}
-                name={stations[station].name}
-                icon={stations[station].icon + '.svg'}
-                description={stations[station].description}
-              />
-            )
-          })}
-        </ul>
-        <h2>{t('serviceAlerts.title')}</h2>
-        <ul>
-          {twitterAcc}
-          <SidebarItem
-            type="url"
-            url="https://twitter.com/DYMAJOLtd"
-            icon="dymajo.svg"
-            name="DYMAJO"
-            description={t('serviceAlerts.twitter', { account: 'DYMAJOLtd' })}
-          />
-        </ul>
-        <div className="more-section">
-          <h2>{t('savedStations.more')}</h2>
-          <ul className="blue-fill">{secondTwo}</ul>
-        </div>
-        <a
-          className="label version"
-          href="https://github.com/consindo/dymajo-transit"
-          target="_blank"
-          rel="noopener"
-          onClick={this.reject}
-        >
-          DYMAJO Waka v{localStorage.getItem('AppVersion')}
-        </a>
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
       </div>
     )
   }
 }
+
+styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+  },
+  innerWrapper: {
+    padding: vars.padding,
+    backgroundColor: '#fff',
+  },
+  label: {
+    color: vars.headerColor,
+    fontFamily: vars.fontFamily,
+    fontWeight: 'bold',
+    fontSize: vars.defaultFontSize - 2,
+    paddingBottom: vars.padding * 0.25,
+  },
+  input: {
+    fontFamily: vars.fontFamily,
+    fontSize: vars.defaultFontSize,
+    backgroundColor: '#fff',
+    paddingTop: vars.padding * 0.5,
+    paddingBottom: vars.padding * 0.5,
+    paddingLeft: vars.padding * 0.75,
+    paddingRight: vars.padding * 0.75,
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: vars.borderColor,
+    borderRadius: 3,
+    marginBottom: vars.padding,
+  },
+  checkboxContainer: {
+    paddingTop: vars.padding / 2,
+    paddingBottom: vars.padding / 2,
+  },
+  checkboxRow: {
+    paddingBottom: vars.padding / 2,
+  },
+})

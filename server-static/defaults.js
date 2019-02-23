@@ -23,7 +23,7 @@ const template = {
   layout: pug.compileFile(path.join(__dirname, 'templates/layout.pug')),
 }
 
-const dtitle = 'Waka'
+const dtitle = 'Waka2'
 const ddescription =
   'Your way around Auckland & Wellington. Realtime, beautiful, and runs on all of your devices.'
 const dcanonical = 'https://waka.app'

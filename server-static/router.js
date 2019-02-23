@@ -23,6 +23,7 @@ router.get('/l', defaults.index)
 router.get('/l/:region', defaults.index)
 router.get('/l/:region/:line', defaults.index)
 router.get('/l/:region/*', (req, res) => defaults.notFound(res))
+router.get('/dashboard', defaults.index)
 
 // because we have a thing that removes trailing slashes...
 router.get('/docs', (req, res) => {

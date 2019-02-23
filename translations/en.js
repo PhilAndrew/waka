@@ -12,12 +12,12 @@ export default {
     activator: 'Let us know!',
   },
   root: {
-    stationsLabel: 'Stations',
-    linesLabel: 'Lines',
+    stationsLabel: 'I am a Broker',
+    linesLabel: 'I am a Lawyer',
   },
   onboarding: {
     welcome: {
-      name: 'Kia Ora! Welcome to %{appname}.',
+      name: 'zKia Ora! Welcome to %{appname}.',
       description:
         '%{appname} is your realtime guide to public transport in Auckland and Wellington',
     },
@@ -27,8 +27,8 @@ export default {
     },
     install: {
       name: 'Install App',
-      description: 'Add %{appname} to your home screen',
-      description2: 'Send %{appname} to your phone',
+      description: 'Add Access Our Community to your home screen',
+      description2: 'Send Access Our Community to your phone',
     },
     city: {
       name: 'Switch City',

@@ -7,9 +7,9 @@
     "showInCityList": true
   },
   "nz-akl": {
-    "name": "Tāmaki Makaurau",
-    "secondaryName": "Auckland",
-    "longName": "Tāmaki Makaurau, Auckland",
+    "name": "COW1",
+    "secondaryName": "COW2",
+    "longName": "Tāmaki z, Auckland",
     "initialLocation": [-36.844229, 174.767823],
     "showInCityList": true
   },

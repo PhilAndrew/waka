@@ -8,6 +8,7 @@ export class LineData {
     this.trip_id = props.trip_id || null
   }
 
+
   getMeta() {
     return new Promise((resolve, reject) => {
       if (this.region === null || this.line_id === null) {

@@ -11,8 +11,8 @@ import { LinkedScroll } from '../reusable/linkedScroll.jsx'
 import { TouchableOpacity } from '../reusable/touchableOpacity.jsx'
 import { RootContent } from './content.jsx'
 
-import StationIcon from '../../../dist/icons/station.svg'
-import LinesIcon from '../../../dist/icons/lines.svg'
+import StationIcon from '../../../dist/icons/nog4.svg'
+import LinesIcon from '../../../dist/icons/ngo3.svg'
 import SettingsIcon from '../../../dist/icons/settings.svg'
 
 export class Root extends React.Component {
@@ -40,9 +40,7 @@ export class Root extends React.Component {
   }
   toggleStations = () => {
     // the request animation frame fixes a jump on iOS
-    requestAnimationFrame(() => {
-      UiStore.setCardPosition('toggle')
-    })
+    UiStore.state.signupButtonState = 1
   }
   toggleLines = () => {
     UiStore.safePush(`/l/${this.state.currentCity.prefix}`)
@@ -66,8 +64,10 @@ export class Root extends React.Component {
           style={styles.headerWrapper}
           ref={this.wrapper}
         >
+
           <TouchableOpacity
-            style={[styles.button, styles.rightBorder]}
+            style={
+              [styles.button, styles.rightBorder]}
             onClick={this.toggleStations}
           >
             <StationIcon style={{ margin: 'auto' }} />
