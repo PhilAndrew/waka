@@ -1,4 +1,6 @@
-# Waka
+# Submission of Access our Community AOC for LegalTech Hackerthon 2019
+
+# This is NOT Waka
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/bf59f49c861eee7e624e/maintainability)](https://codeclimate.com/github/consindo/waka/maintainability)
 [![Dependency Status](https://david-dm.org/consindo/waka.svg?theme=shields.io)](https://david-dm.org/consindo/waka)
