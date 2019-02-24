@@ -155,13 +155,13 @@ class BasemapWithoutRouter extends React.Component {
         style: {'white-space': 'unset'},
       },
       {
-        Header: 'Status',
+        Header: 'Action',
         accessor: 'status', // String-based value accessors!
         Cell: props => {
           const {
             value
           } = props;
-          if (value === 'Applied')
+          if (value === 'Pending')
             return (
               <Text style={styles.red}>
                 {value}
@@ -169,19 +169,12 @@ class BasemapWithoutRouter extends React.Component {
             )
           else
             return (
-              <Text>
-                {value}
-              </Text>
+              <span className='number'>
+              <button>Apply to case</button>
+              </span> // Custom cell components!
             );
         }
-        },
-      {
-        Header: 'Action',
-        accessor: 'action', // String-based value accessors!
-        Cell: props => <span className='number'>
-            <button>Apply to case</button>
-        </span>, // Custom cell components!
-      }]
+        }]
 
       /*
       , {
@@ -212,7 +205,7 @@ class BasemapWithoutRouter extends React.Component {
                 console.log("It was in this column:", column);
                 console.log("It was in this row:", rowInfo);
                 console.log(rowInfo.original.id);
-                this.state.data[rowInfo.original.id].status = 'Applied';
+                this.state.data[rowInfo.original.id].status = 'Pending';
                 this.state.data[rowInfo.original.id].haveApplied = true;
                 this.setState(this.state);
                 console.log("It was in this table instance:", instance);

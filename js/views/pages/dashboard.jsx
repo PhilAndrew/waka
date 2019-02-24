@@ -23,6 +23,13 @@ export class Dashboard extends React.PureComponent {
       { value: 'Research', label: 'Research' },
     ]
 
+    const options2 = [
+      { value: 'HongKong', label: 'Hong Kong' },
+      { value: 'USA', label: 'United State' },
+      { value: 'Europe', label: 'Europe' },
+      { value: 'Africa', label: 'Africa' },
+    ]
+
     return <View>
       <Header title=""/>
       <div className="root-card-content">
@@ -46,12 +53,12 @@ export class Dashboard extends React.PureComponent {
             <View style={styles.innerWrapper}>
               <Text style={styles.label}>Jurisdiction:
               </Text>
-              <TextInput
-                style={styles.input}
-                value=''
-              />
 
             </View>
+            <div className="what">
+            <Select style={styles.innerWrapper}
+                    options={options2} />
+            </div>
 
             <View style={styles.innerWrapper}>
               <Text style={styles.label}>Priority:
