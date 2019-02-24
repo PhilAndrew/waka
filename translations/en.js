@@ -12,7 +12,7 @@ export default {
     activator: 'Let us know!',
   },
   root: {
-    stationsLabel: 'I am a Broker',
+    stationsLabel: 'I am a Client',
     linesLabel: 'I am a Lawyer',
   },
   onboarding: {

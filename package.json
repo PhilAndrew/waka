@@ -99,6 +99,7 @@
         "react-art": "^16.4.1",
         "react-columns": "^1.2.0",
         "react-dom": "^16.4.1",
+        "react-dropdown": "^1.6.4",
         "react-leaflet": "^1.7.0",
         "react-native-web": "^0.8.8",
         "react-router": "^4.2.0",

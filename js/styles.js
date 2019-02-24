@@ -7,7 +7,6 @@ export const vars = {
   borderColorWhite: '#eee',
   borderColor: '#ddd',
   padding: 16,
-
   smallFontSize: 13,
   defaultFontSize: 16,
   headerIconColor: '#666',
@@ -16,6 +15,7 @@ export const vars = {
 
   desktopThreshold: 850,
 }
+
 export const paragraphStyles = StyleSheet.create({
   h1: {
     fontWeight: '600',

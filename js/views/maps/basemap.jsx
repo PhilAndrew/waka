@@ -81,27 +81,27 @@ class BasemapWithoutRouter extends React.Component {
     data: [{
       id: 0,
       name: 'NGO needs assistance with reviewing licensing agreement.',
-      status: 'open',
+      status: 'Open',
       action: 'Action',
     },
       {
         id: 1,
         name: 'NGO needs assistance with trademark registration.',
-        status: 'open',
+        status: 'Open',
         action: 'Action',
         haveApplied: false,
       },
       {
         id: 2,
         name: 'Immigrant needs assistance with reviewing insurance agreement.',
-        status: 'open',
+        status: 'Open',
         action: 'Action',
         haveApplied: false,
       },
       {
         id: 3,
         name: 'Environmental NGO seeks research assistance to summarise conservation laws across Asian jurisdictions for comparative analysis.',
-        status: 'open',
+        status: 'Open',
         action: 'Action',
         haveApplied: false,
       }
@@ -163,7 +163,7 @@ class BasemapWithoutRouter extends React.Component {
           const {
             value
           } = props;
-          if (value === 'applied')
+          if (value === 'Applied')
             return (
               <Text style={styles.red}>
                 {value}
@@ -214,7 +214,7 @@ class BasemapWithoutRouter extends React.Component {
                 console.log("It was in this column:", column);
                 console.log("It was in this row:", rowInfo);
                 console.log(rowInfo.original.id);
-                this.state.data[rowInfo.original.id].status = 'applied';
+                this.state.data[rowInfo.original.id].status = 'Applied';
                 this.state.data[rowInfo.original.id].haveApplied = true;
                 this.setState(this.state);
                 console.log("It was in this table instance:", instance);
