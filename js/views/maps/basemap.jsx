@@ -17,6 +17,9 @@ let styles = null
 
 
 styles = StyleSheet.create({
+  red: {
+    color: '#33ff33 !important',
+  },
   wrapper: {
     paddingLeft: '20px',
     paddingRight: '20px',
@@ -78,26 +81,29 @@ class BasemapWithoutRouter extends React.Component {
     data: [{
       id: 0,
       name: 'NGO needs assistance with reviewing licensing agreement.',
-      status: 'Open',
+      status: 'open',
       action: 'Action',
     },
       {
         id: 1,
         name: 'NGO needs assistance with trademark registration.',
-        status: 'Open',
+        status: 'open',
         action: 'Action',
+        haveApplied: false,
       },
       {
         id: 2,
         name: 'Immigrant needs assistance with reviewing insurance agreement.',
-        status: 'Open',
+        status: 'open',
         action: 'Action',
+        haveApplied: false,
       },
       {
         id: 3,
         name: 'Environmental NGO seeks research assistance to summarise conservation laws across Asian jurisdictions for comparative analysis.',
-        status: 'Open',
+        status: 'open',
         action: 'Action',
+        haveApplied: false,
       }
 
     ]
@@ -113,6 +119,10 @@ class BasemapWithoutRouter extends React.Component {
     UiStore.safePush('/lawyer/apply')
   }
 
+  onCancel(e) {
+    UiStore.goBack()
+  }
+
   render() {
     console.log(this.props.location.pathname)
 
@@ -120,8 +130,6 @@ class BasemapWithoutRouter extends React.Component {
       return <View style={styles.dashboard}>
         <Text>
           <h2>Apply to case</h2>
-
-
           <View style={styles.innerWrapper}>
             <Text style={styles.label}>Application message:
             </Text>
@@ -130,9 +138,9 @@ class BasemapWithoutRouter extends React.Component {
               style={styles.input}
             />
             <div>
-              <button>Submit</button>
+              <button onClick={this.onCancel}>Submit</button>
               <br />&nbsp;<br />
-              <button>Cancel</button>
+              <button onClick={this.onCancel}>Cancel</button>
             </div>
           </View>
 
@@ -151,7 +159,24 @@ class BasemapWithoutRouter extends React.Component {
       {
         Header: 'Status',
         accessor: 'status', // String-based value accessors!
-      },
+        Cell: props => {
+          const {
+            value
+          } = props;
+          if (value === 'applied')
+            return (
+              <Text style={styles.red}>
+                {value}
+              </Text>
+            )
+          else
+            return (
+              <Text>
+                {value}
+              </Text>
+            );
+        }
+        },
       {
         Header: 'Action',
         accessor: 'action', // String-based value accessors!
@@ -189,7 +214,8 @@ class BasemapWithoutRouter extends React.Component {
                 console.log("It was in this column:", column);
                 console.log("It was in this row:", rowInfo);
                 console.log(rowInfo.original.id);
-                this.state.data[rowInfo.original.id].status = 'You have applied';
+                this.state.data[rowInfo.original.id].status = 'applied';
+                this.state.data[rowInfo.original.id].haveApplied = true;
                 this.setState(this.state);
                 console.log("It was in this table instance:", instance);
 
