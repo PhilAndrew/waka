@@ -45,8 +45,7 @@ export class Dashboard extends React.PureComponent {
                 style={styles.input}
                 value=''
               />
-              <Dropdown options={options}
-                        placeholder="Select an option" />
+
             </View>
 
 
@@ -57,6 +56,7 @@ export class Dashboard extends React.PureComponent {
                 style={styles.input}
                 value=''
               />
+
             </View>
 
 
@@ -67,6 +67,7 @@ export class Dashboard extends React.PureComponent {
                 style={styles.input}
                 value=''
               />
+
             </View>
 
 
