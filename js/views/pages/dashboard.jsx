@@ -2,6 +2,7 @@ import React from 'react'
 import Dropdown from 'react-dropdown'
 import {TextInput, StyleSheet, findNodeHandle } from 'react-native'
 import ReactTable from 'react-table'
+import Select from 'react-select';
 
 import { Header } from '../reusable/header.jsx'
 import { View, Text } from 'react-native-web'
@@ -14,21 +15,14 @@ export class Dashboard extends React.PureComponent {
 
   render() {
     const options = [
-      { value: 'one', label: 'One' },
-      { value: 'two', label: 'Two', className: 'myOptionClassName' },
-      {
-        type: 'group', name: 'group1', items: [
-          { value: 'three', label: 'Three', className: 'myOptionClassName' },
-          { value: 'four', label: 'Four' }
-        ],
-      },
-      {
-        type: 'group', name: 'group2', items: [
-          { value: 'five', label: 'Five' },
-          { value: 'six', label: 'Six' }
-        ],
-      },
+      { value: 'Immigration', label: 'Immigration' },
+      { value: 'Incorporation', label: 'Incorporation' },
+      { value: 'Taxexemption', label: 'Tax exemption' },
+      { value: 'Courtproceeding', label: 'Court proceeding' },
+      { value: 'Documentreview', label: 'Document review' },
+      { value: 'Research', label: 'Research' },
     ]
+
     return <View>
       <Header title=""/>
       <div className="root-card-content">
@@ -41,13 +35,13 @@ export class Dashboard extends React.PureComponent {
             </View>
             <View style={styles.innerWrapper}>
               <Text style={styles.label}>Practice area:</Text>
-              <TextInput
-                style={styles.input}
-                value=''
-              />
 
             </View>
 
+            <div className="what">
+            <Select style={styles.innerWrapper}
+              options={options} />
+            </div>
 
             <View style={styles.innerWrapper}>
               <Text style={styles.label}>Jurisdiction:
@@ -58,7 +52,6 @@ export class Dashboard extends React.PureComponent {
               />
 
             </View>
-
 
             <View style={styles.innerWrapper}>
               <Text style={styles.label}>Priority:
@@ -90,6 +83,7 @@ styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   innerWrapper2: {
+    padding: 16,
     paddingLeft: 16,
     paddingRight: 16,
     paddingBottom: 10,
