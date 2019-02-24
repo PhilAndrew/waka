@@ -129,7 +129,11 @@ class BasemapWithoutRouter extends React.Component {
               multiline={true}
               style={styles.input}
             />
-            <button>Apply to Case</button>
+            <div>
+              <button>Submit</button>
+              <br />&nbsp;<br />
+              <button>Cancel</button>
+            </div>
           </View>
 
         </Text>
