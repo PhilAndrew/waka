@@ -114,9 +114,9 @@ class BasemapWithoutRouter extends React.Component {
 
 
   clickApply(e) {
-    console.log(e);
-    console.log('click apply')
-    UiStore.safePush('/lawyer/apply')
+    //console.log(e);
+    //console.log('click apply')
+    //UiStore.safePush('/lawyer/apply')
   }
 
   onCancel(e) {
@@ -148,8 +148,6 @@ class BasemapWithoutRouter extends React.Component {
       </View>
     } else
     if (this.props.location.pathname === '/dashboard/law') {
-
-
 
       const columns = [{
         Header: 'Case Description',
