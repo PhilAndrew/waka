@@ -30,6 +30,13 @@ export class Dashboard extends React.PureComponent {
       { value: 'Africa', label: 'Africa' },
     ]
 
+
+    const options3 = [
+      { value: 'Immediate', label: 'Immediate' },
+      { value: 'Flexible', label: 'Flexible' },
+      { value: 'Long term', label: 'Long term' },
+    ]
+
     return <View>
       <Header title=""/>
       <div className="root-card-content">
@@ -63,11 +70,14 @@ export class Dashboard extends React.PureComponent {
             <View style={styles.innerWrapper}>
               <Text style={styles.label}>Priority:
               </Text>
-              <TextInput
-                style={styles.input}
-                value=''
-              />
+            </View>
+            <div className="what">
+              <Select style={styles.innerWrapper}
+                      options={options3} />
+            </div>
 
+            <View style={styles.innerWrapper3}>
+              <button>Search</button>
             </View>
 
 
@@ -94,6 +104,10 @@ styles = StyleSheet.create({
     paddingLeft: 16,
     paddingRight: 16,
     paddingBottom: 10,
+    backgroundColor: '#fff',
+  },
+  innerWrapper3: {
+    padding: 16,
     backgroundColor: '#fff',
   },
 
