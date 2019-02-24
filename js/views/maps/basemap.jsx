@@ -1,13 +1,16 @@
 import React from 'react'
 import Columns from 'react-columns'
 
-
+import ReactTable from 'react-table'
 import PropTypes from 'prop-types'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, TextInput } from 'react-native'
 import { View, Text } from 'react-native-web'
 
 import { withRouter } from 'react-router'
 import {vars} from '../../styles'
+import {UiStore} from '../../stores/uiStore'
+import {StationStore} from '../../stores/stationStore'
+//import {LinkButton} from '../reusable/linkButton'
 
 
 let styles = null
@@ -35,22 +38,170 @@ styles = StyleSheet.create({
   red: {
     paddingLeft: 'auto',
   },
+  innerWrapper: {
+    padding: vars.padding,
+  },
+  label: {
+    color: vars.headerColor,
+    fontFamily: vars.fontFamily,
+    fontWeight: 'bold',
+    fontSize: vars.defaultFontSize - 2,
+    paddingBottom: vars.padding * 0.25,
+  },
+  input: {
+    fontFamily: vars.fontFamily,
+    fontSize: vars.defaultFontSize,
+    backgroundColor: '#fff',
+    paddingTop: vars.padding * 0.5,
+    paddingBottom: vars.padding * 0.5,
+    paddingLeft: vars.padding * 0.75,
+    paddingRight: vars.padding * 0.75,
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: vars.borderColor,
+    borderRadius: 3,
+    marginBottom: vars.padding,
+  },
+  checkboxContainer: {
+    paddingTop: vars.padding / 2,
+    paddingBottom: vars.padding / 2,
+  },
+  checkboxRow: {
+    paddingBottom: vars.padding / 2,
+  },
 })
 
-
 class BasemapWithoutRouter extends React.Component {
- 
+
+  state = {
+    email: '',
+    data: [{
+      id: 0,
+      name: 'NGO needs assistance with reviewing licensing agreement.',
+      status: 'Open',
+      action: 'Action',
+    },
+      {
+        id: 1,
+        name: 'NGO needs assistance with trademark registration.',
+        status: 'Open',
+        action: 'Action',
+      },
+      {
+        id: 2,
+        name: 'Immigrant needs assistance with reviewing insurance agreement.',
+        status: 'Open',
+        action: 'Action',
+      },
+      {
+        id: 3,
+        name: 'Environmental NGO seeks research assistance to summarise conservation laws across Asian jurisdictions for comparative analysis.',
+        status: 'Open',
+        action: 'Action',
+      }
+
+    ]
+  }
+
   componentDidMount() {
+  }
+
+
+  clickApply(e) {
+    console.log(e);
+    console.log('click apply')
+    UiStore.safePush('/lawyer/apply')
   }
 
   render() {
     console.log(this.props.location.pathname)
-    if (this.props.location.pathname === '/dashboard') {
+
+    if (this.props.location.pathname === '/lawyer/apply') {
+      return <View style={styles.dashboard}>
+        <Text>
+          <h2>Apply to case</h2>
 
 
-      return <View style={styles.dashboard}><Text>
-        Dashboard contents
+          <View style={styles.innerWrapper}>
+            <Text style={styles.label}>Application message:
+            </Text>
+            <TextInput
+              multiline={true}
+              style={styles.input}
+            />
+            <button>Apply to Case</button>
+          </View>
+
         </Text>
+      </View>
+    } else
+    if (this.props.location.pathname === '/dashboard/law') {
+
+
+
+      const columns = [{
+        Header: 'Case Description',
+        accessor: 'name', // String-based value accessors!
+        style: {'white-space': 'unset'},
+      },
+      {
+        Header: 'Status',
+        accessor: 'status', // String-based value accessors!
+      },
+      {
+        Header: 'Action',
+        accessor: 'action', // String-based value accessors!
+        Cell: props => <span className='number'>
+            <button>Apply to case</button>
+        </span>, // Custom cell components!
+      }]
+
+      /*
+      , {
+        Header: 'Age',
+        accessor: 'age',
+        Cell: props => <span className='number'>{props.value}</span>, // Custom cell components!
+      }, {
+        id: 'friendName', // Required because our accessor is not a string
+        Header: 'Friend Name',
+        accessor: d => d.friend.name, // Custom value accessors!
+      }, {
+        Header: props => <span>Friend Age</span>, // Custom header components!
+        accessor: 'friend.age',
+      }
+       */
+      return <View style={styles.dashboard}>
+        <Text>
+          <h2>Law firm Dashboard - All cases</h2>
+        </Text>
+        <ReactTable
+          getTdProps={(state, rowInfo, column, instance) => {
+            return {
+              onClick: (e, handleOriginal) => {
+                if (column.id === 'action')
+                  this.clickApply()
+                console.log("A Td Element was clicked!");
+                console.log("it produced this event:", e);
+                console.log("It was in this column:", column);
+                console.log("It was in this row:", rowInfo);
+                console.log(rowInfo.original.id);
+                this.state.data[rowInfo.original.id].status = 'You have applied';
+                this.setState(this.state);
+                console.log("It was in this table instance:", instance);
+
+                // IMPORTANT! React-Table uses onClick internally to trigger
+                // events like expanding SubComponents and pivots.
+                // By default a custom 'onClick' handler will override this functionality.
+                // If you want to fire the original onClick handler, call the
+                // 'handleOriginal' function.
+                if (handleOriginal) {
+                  handleOriginal();
+                }
+              }
+            }}}
+        data={this.state.data}
+        columns={columns}
+      />
       </View>
     } else {
       return <View style={styles.wrapper}><Text>

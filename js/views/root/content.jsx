@@ -191,7 +191,7 @@ export class RootContent extends React.Component {
   clickLogin = () => {
     //UiStore.go('/dashboard')
     console.log('clicked')
-    UiStore.safePush('/dashboard')
+    UiStore.safePush('/dashboard/law')
   }
   render() {
     let twitterAcc

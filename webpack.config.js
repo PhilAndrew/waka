@@ -105,7 +105,7 @@ let config = {
     historyApiFallback: {
       rewrites: [{ from: /./, to: '/index-generated.html' }],
     },
-    port: 8009,
+    port: 8089,
     host: '0.0.0.0',
     index: 'index-generated.html',
     proxy: {

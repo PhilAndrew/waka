@@ -96,7 +96,8 @@ class Content extends React.Component {
           <Route path="/region" exact render={wrapFn(Region)} />
           <Route path="/settings" exact render={wrapFn(Settings)} />
           <Route path="/blank" exact render={wrapFn(Blank)} />
-          <Route path="/dashboard" exact render={wrapFn(Dashboard)} />
+          <Route path="/dashboard/law" exact render={wrapFn(Dashboard)} />
+          <Route path="/lawyer/apply" exact render={wrapFn(Dashboard)} />
           <Route render={wrapFn(NoMatch)} />
         </Switch>
       </View>
