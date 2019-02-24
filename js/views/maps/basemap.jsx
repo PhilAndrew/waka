@@ -192,7 +192,7 @@ class BasemapWithoutRouter extends React.Component {
        */
       return <View style={styles.dashboard}>
         <Text>
-          <h2>Law firm Dashboard - All cases</h2>
+          <h2>Lawyer - All cases</h2>
         </Text>
         <ReactTable
           getTdProps={(state, rowInfo, column, instance) => {

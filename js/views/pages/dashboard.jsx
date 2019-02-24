@@ -25,7 +25,7 @@ export class Dashboard extends React.PureComponent {
 
     const options2 = [
       { value: 'HongKong', label: 'Hong Kong' },
-      { value: 'USA', label: 'United State' },
+      { value: 'USA', label: 'United States' },
       { value: 'Europe', label: 'Europe' },
       { value: 'Africa', label: 'Africa' },
     ]
