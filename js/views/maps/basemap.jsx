@@ -106,7 +106,14 @@ class BasemapWithoutRouter extends React.Component {
         haveApplied: false,
       }
 
-    ]
+    ],
+
+    data2: [{
+      id: 0,
+      name: 'Mary applied for: NGO needs assistance with reviewing licensing agreement.',
+      status: 'Open',
+      action: 'Action',
+    }],
   }
 
   componentDidMount() {
@@ -161,7 +168,7 @@ class BasemapWithoutRouter extends React.Component {
             const {
               value
             } = props;
-            if (value === 'Pending')
+            if (value === 'Approved')
               return (
                 <Text style={styles.red}>
                   {value}
@@ -170,7 +177,7 @@ class BasemapWithoutRouter extends React.Component {
             else
               return (
                 <span className='number'>
-              <button>Apply to case</button>
+              <button>Approve</button>
               </span> // Custom cell components!
               );
           }
@@ -205,8 +212,8 @@ class BasemapWithoutRouter extends React.Component {
                 console.log("It was in this column:", column);
                 console.log("It was in this row:", rowInfo);
                 console.log(rowInfo.original.id);
-                this.state.data[rowInfo.original.id].status = 'Pending';
-                this.state.data[rowInfo.original.id].haveApplied = true;
+                this.state.data2[rowInfo.original.id].status = 'Approved';
+                this.state.data2[rowInfo.original.id].haveApplied = true;
                 this.setState(this.state);
                 console.log("It was in this table instance:", instance);
 
@@ -220,7 +227,7 @@ class BasemapWithoutRouter extends React.Component {
                 }
               }
             }}}
-          data={this.state.data}
+          data={this.state.data2}
           columns={columns}
         />
       </View>
