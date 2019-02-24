@@ -147,6 +147,84 @@ class BasemapWithoutRouter extends React.Component {
         </Text>
       </View>
     } else
+    if (this.props.location.pathname === '/dashboard/law2') {
+
+      const columns = [{
+        Header: 'Case Description',
+        accessor: 'name', // String-based value accessors!
+        style: {'white-space': 'unset'},
+      },
+        {
+          Header: 'Action',
+          accessor: 'status', // String-based value accessors!
+          Cell: props => {
+            const {
+              value
+            } = props;
+            if (value === 'Pending')
+              return (
+                <Text style={styles.red}>
+                  {value}
+                </Text>
+              )
+            else
+              return (
+                <span className='number'>
+              <button>Apply to case</button>
+              </span> // Custom cell components!
+              );
+          }
+        }]
+
+      /*
+      , {
+        Header: 'Age',
+        accessor: 'age',
+        Cell: props => <span className='number'>{props.value}</span>, // Custom cell components!
+      }, {
+        id: 'friendName', // Required because our accessor is not a string
+        Header: 'Friend Name',
+        accessor: d => d.friend.name, // Custom value accessors!
+      }, {
+        Header: props => <span>Friend Age</span>, // Custom header components!
+        accessor: 'friend.age',
+      }
+       */
+      return <View style={styles.dashboard}>
+        <Text>
+          <h2>Law Firm Coordinator</h2>
+        </Text>
+        <ReactTable
+          getTdProps={(state, rowInfo, column, instance) => {
+            return {
+              onClick: (e, handleOriginal) => {
+                if (column.id === 'action')
+                  this.clickApply()
+                console.log("A Td Element was clicked!");
+                console.log("it produced this event:", e);
+                console.log("It was in this column:", column);
+                console.log("It was in this row:", rowInfo);
+                console.log(rowInfo.original.id);
+                this.state.data[rowInfo.original.id].status = 'Pending';
+                this.state.data[rowInfo.original.id].haveApplied = true;
+                this.setState(this.state);
+                console.log("It was in this table instance:", instance);
+
+                // IMPORTANT! React-Table uses onClick internally to trigger
+                // events like expanding SubComponents and pivots.
+                // By default a custom 'onClick' handler will override this functionality.
+                // If you want to fire the original onClick handler, call the
+                // 'handleOriginal' function.
+                if (handleOriginal) {
+                  handleOriginal();
+                }
+              }
+            }}}
+          data={this.state.data}
+          columns={columns}
+        />
+      </View>
+    } else
     if (this.props.location.pathname === '/dashboard/law') {
 
       const columns = [{

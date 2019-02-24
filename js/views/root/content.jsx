@@ -45,6 +45,8 @@ let styles = null
 
 class SidebarItemVanilla extends React.Component {
   state = {
+    email: '',
+    password: '',
     description: false,
   }
   static propTypes = {
@@ -193,6 +195,11 @@ export class RootContent extends React.Component {
     console.log('clicked')
     UiStore.safePush('/dashboard/law')
   }
+  clickLogin2 = () => {
+    //UiStore.go('/dashboard')
+    console.log('clicked')
+    UiStore.safePush('/dashboard/law2')
+  }
   render() {
     let twitterAcc
     if (this.state.currentCity.prefix === 'nz-akl') {
@@ -266,15 +273,21 @@ export class RootContent extends React.Component {
             </Text>
             <TextInput
               style={styles.input}
-              value={this.state.email}
+              value={this.state.password}
               secureTextEntry={true}
               onChange={this.triggerSaveChange}
             />
             <LinkButton
               color="secondary"
               size="large"
-              label="Login User"
+              label="Login Lawyer"
               onClick={this.clickLogin}
+            />
+            <LinkButton
+              color="secondary"
+              size="large"
+              label="Login Law Firm Coordinator"
+              onClick={this.clickLogin2}
             />
           </View>
 
