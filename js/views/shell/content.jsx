@@ -18,6 +18,7 @@ import { Settings } from '../pages/settings.jsx'
 import { Blank } from '../pages/blank.jsx'
 import { NoMatch } from '../pages/nomatch.jsx'
 import {Dashboard} from '../pages/dashboard.jsx'
+import {Dashboard2} from '../pages/dashboard2.jsx'
 
 const routingEvents = new Events()
 
@@ -97,6 +98,7 @@ class Content extends React.Component {
           <Route path="/settings" exact render={wrapFn(Settings)} />
           <Route path="/blank" exact render={wrapFn(Blank)} />
           <Route path="/dashboard/law" exact render={wrapFn(Dashboard)} />
+          <Route path="/dashboard/law2" exact render={wrapFn(Dashboard2)} />
           <Route path="/lawyer/apply" exact render={wrapFn(Dashboard)} />
           <Route render={wrapFn(NoMatch)} />
         </Switch>

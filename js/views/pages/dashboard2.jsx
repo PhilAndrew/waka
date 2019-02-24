@@ -10,7 +10,7 @@ import {vars} from '../../styles'
 
 let styles = null
 
-export class Dashboard extends React.PureComponent {
+export class Dashboard2 extends React.PureComponent {
 
 
   render() {
@@ -52,8 +52,8 @@ export class Dashboard extends React.PureComponent {
             </View>
 
             <div className="what">
-            <Select style={styles.innerWrapper}
-              options={options} />
+              <Select style={styles.innerWrapper}
+                      options={options} />
             </div>
 
             <View style={styles.innerWrapper}>
@@ -62,8 +62,8 @@ export class Dashboard extends React.PureComponent {
 
             </View>
             <div className="what">
-            <Select style={styles.innerWrapper}
-                    options={options2} />
+              <Select style={styles.innerWrapper}
+                      options={options2} />
             </div>
 
             <View style={styles.innerWrapper}>
